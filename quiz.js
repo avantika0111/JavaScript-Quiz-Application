@@ -15,7 +15,7 @@ const scoreDiv= document.getElementById("scoreContainer");
 let questions=[
 	{
 		question : "In HTML, colors can be specified using HSL value, which means",
-        imgSrc : "img/html.png",
+        imgSrc : "html.png",
         choiceA : "Hue, Saturation, Light",
         choiceB : "High, Static, Low",
         choiceC : "High, Stable, Low",
@@ -23,7 +23,7 @@ let questions=[
 	},
 	{
 		question : "A tag used as an alternative to make text bold is",
-        imgSrc : "img/html.png",
+        imgSrc : "html.png",
         choiceA : "bold tag",
         choiceB : "double tag",
         choiceC : "strong tag",
@@ -31,7 +31,7 @@ let questions=[
 	},
 	{
 		question : "Defining a special style for special table, added attribute should be of",
-        imgSrc : "img/html.png",
+        imgSrc : "html.png",
         choiceA : "class tag",
         choiceB : "padding tag",
         choiceC : "id tag",
@@ -39,7 +39,7 @@ let questions=[
 	},
 	{
 		question : "Element <em> of HTML defines",
-        imgSrc : "img/html.png",
+        imgSrc : "html.png",
         choiceA : "Exponent mode text",
         choiceB : "Emphasized text",
         choiceC : "Empirical text",
@@ -47,7 +47,7 @@ let questions=[
 	},
 	{
 		question : "Data type of an array is",
-        imgSrc : "img/js.png",
+        imgSrc : "js.png",
         choiceA : "int",
         choiceB : "object",
         choiceC : "NaN",
@@ -55,7 +55,7 @@ let questions=[
 	},
 	{
 		question: "XHTML elements should always be declared in",
-		imgSrc:"img/html.png",
+		imgSrc:"html.png",
 		choiceA:"Uppercase",
 		choiceB:"Lowercase",
 		choiceC:"Sentence case",
@@ -63,7 +63,7 @@ let questions=[
 	},
 	{
 		question: "In order to define a style for special type of elements, attribute to be added is known to be",
-		imgSrc:"img/html.png",
+		imgSrc:"html.png",
 		choiceA: "class tag",
 		choiceB:"body tag",
 		choiceC:"id tag",
@@ -71,7 +71,7 @@ let questions=[
 	},
 	{
 		question: "For best practice while identifying variables, use",
-		imgSrc:"img/js.png",
+		imgSrc:"js.png",
 		choiceA: "Lower case",
 		choiceB:"Camelcase",
 		choiceC:"Proper case",
@@ -79,7 +79,7 @@ let questions=[
 	},
 	{
 		question: "Test() method of regular expression, is a",
-		imgSrc:"img/js.png",
+		imgSrc:"js.png",
 		choiceA: "Comparison method",
 		choiceB:"Conversion method",
 		choiceC:"Boolean method",
@@ -87,7 +87,7 @@ let questions=[
 	},
 	{
 		question: "Data type of NaN is a",
-		imgSrc:"img/js.png",
+		imgSrc:"js.png",
 		choiceA: "Number",
 		choiceB:"Undefined",
 		choiceC:"Character",
@@ -208,11 +208,11 @@ function displayScore()
 	const percentScore= Math.round(100*score/questions.length);
 	
 	// choose the image based on the % score
-    let img = (percentScore >= 80) ? "img/5.png" :
-              (percentScore >= 60) ? "img/4.png" :
-              (percentScore >= 40) ? "img/3.png" :
-              (percentScore >= 20) ? "img/2.png" :
-              "img/1.png";
+    let img = (percentScore >= 80) ? "5.png" :
+              (percentScore >= 60) ? "4.png" :
+              (percentScore >= 40) ? "3.png" :
+              (percentScore >= 20) ? "2.png" :
+              "1.png";
 			  
 	scoreDiv.innerHTML="<img src="+ img + ">";
 	scoreDiv.innerHTML+= "<p>" + percentScore + "%</p>";
