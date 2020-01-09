@@ -95,21 +95,26 @@ let questions=[
 	}
 
 ]
- // creating variables
+
+let displayedQuestion=[]
  
-const lastQuestion = questions.length - 1;
-let runningQuestion = 0;
+ // creating variables
+const lastQuestion = questions.length-1;
+let randomQuestion = Math.floor(Math.random()*10);
+displayedQuestion.push(randomQuestion)
+let randomQuestionCount=1;
 let count = 0;
-const questionTime = 10; // 10s
-const gaugeWidth = 150; // 150px
+const questionTime = 10; 
+const gaugeWidth = 150; 
 const gaugeUnit = gaugeWidth / questionTime;
 let TIMER;
 let score = 0;
 
 //display the questions
 function displayQuestion()
-{
-	let q = questions[runningQuestion];
+{	
+	let q = questions[randomQuestion];
+	console.log(randomQuestion);
 	question.innerHTML= "<p>" + q.question + "</p>";
 	qImg.innerHTML="<img src="+q.imgSrc+">";
 	choiceA.innerHTML=q.choiceA;
@@ -133,7 +138,7 @@ function startQuiz()
 
 //function to display progress
 function displayProgress(){
-    for(let qIndex = 0; qIndex <= lastQuestion; qIndex++){
+    for(let qIndex = 1; qIndex <= 5; qIndex++){
         progress.innerHTML += "<div class='prog' id="+ qIndex +"></div>";
     }
 }
@@ -151,10 +156,14 @@ function displayCounter()
 	{
         count = 0;
         // change progress color to red
-        answerIsWrong();
-        if(runningQuestion < lastQuestion){
-            runningQuestion++;
-            displayQuestion();
+        answerIsWrong(randomQuestionCount);
+        if(randomQuestionCount<5){
+            randomQuestionCount++;
+			randomQuestion=Math.floor(Math.random()*10);
+			while(displayedQuestion.includes(randomQuestion))
+				randomQuestion=Math.floor(Math.random()*10);
+            displayedQuestion.push(randomQuestion);
+			displayQuestion();
         }
 		else{
             // end the quiz and show the score
@@ -168,16 +177,20 @@ function displayCounter()
 
 function checkAnswer(answer)
 {
-	if(answer == questions[runningQuestion].correct){
+	if(answer == questions[randomQuestion].correct){
 		score++;
-		answerIsCorrect();
+		answerIsCorrect(randomQuestionCount);
 	}
 	else{
-		answerIsWrong();
+		answerIsWrong(randomQuestionCount);
 	}
 	count=0;
-	if(runningQuestion< lastQuestion){
-		runningQuestion++;
+	if(randomQuestionCount<5){
+		randomQuestionCount++;
+		randomQuestion=Math.floor(Math.random()*10);
+		while(displayedQuestion.includes(randomQuestion))
+			randomQuestion=Math.floor(Math.random()*10);
+        displayedQuestion.push(randomQuestion);
 		displayQuestion();
 	}
 	else{
@@ -188,15 +201,15 @@ function checkAnswer(answer)
 }
 
 // correct answer
-function answerIsCorrect()
+function answerIsCorrect(randomQuestionCount)
 {
-	document.getElementById(runningQuestion).style.background="green";
+	document.getElementById(randomQuestionCount).style.background="green";
 }
 
 // wrong answer
-function answerIsWrong()
+function answerIsWrong(randomQuestionCount)
 {
-	document.getElementById(runningQuestion).style.background="red";
+	document.getElementById(randomQuestionCount).style.background="red";
 }
 
 //function to display score
@@ -205,7 +218,7 @@ function displayScore()
 	scoreDiv.style.display="block";
 	
 	//calculate % score
-	const percentScore= Math.round(100*score/questions.length);
+	const percentScore= Math.round(100*score/5);
 	
 	// choose the image based on the % score
     let img = (percentScore >= 80) ? "5.png" :
